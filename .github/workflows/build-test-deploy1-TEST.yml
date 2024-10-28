@@ -23,4 +23,8 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
-      - run: npm test !! echo 'ESLint failed but continuing...'
+      - run: npm test
+        continue-on-error: true
+      - name: errores
+        if: failure()
+        run: echo "Las pruebas han fallado"
